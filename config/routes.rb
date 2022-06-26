@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/users/index" => "users#index", as: "users"
   
 
-  resources :postimages, only: [:new, :index, :show]
+  resources :users
   resources :books
   
 end
