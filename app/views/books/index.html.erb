@@ -24,11 +24,14 @@
       </table>
       
       <div class="row">
-        <a class="btn btn-outline-secondary btn-block edit_user_23132" href="/users/23132/edit">
-          <i class="fas fa-user-cog"></i>
-        </a>
+        <% if @user == current_user %>
+        <% link_to edit_book_path(@user) %>
+          <a class="btn btn-outline-secondary btn-block" >
+            <i class="fas fa-user-cog"></i>
+          </a>
+        <% end %>  
       </div>
-      
+
       
       <h1>New book</h1>
       
@@ -65,7 +68,7 @@
       <% @books.each do |book| %>
       <thead>
         <tr>
-        <th></th>
+        <th><%= image_tag @user.get_profile_image(80,80) %></th>
         <th><%= link_to book.title,book_path(book.id) %></th>
       
         <th><%= book.body %></th>

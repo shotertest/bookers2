@@ -29,7 +29,7 @@ class BooksController < ApplicationController
 
     @book = Book.new(book_params)
 
-   @book.user_id = current_user.id
+    @book.user_id = current_user.id
 
     @book.save
 
@@ -43,6 +43,14 @@ class BooksController < ApplicationController
     @book.update(book_params)
 
     redirect_to book_path(@book.id)
+ end
+ 
+ def destroy
+    book = Book.find(params[:id])  # データ（レコード）を1件取得
+    
+    book.destroy  # データ（レコード）を削除
+    
+    redirect_to book_path
  end
 
 
