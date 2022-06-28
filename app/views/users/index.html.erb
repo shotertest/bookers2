@@ -1,14 +1,14 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
-  
+
     <div class="col-md-3">
-    
+
      <h1>User info</h1>
-    
+
       <%= image_tag @user.get_profile_image(100,100) %>
       <% if @user.id == current_user.id %>
       <% end %>
-    
+
       <table class="table">
         <tbody>
           <tr></tr>
@@ -22,34 +22,35 @@
           </tr>
         </tbody>
       </table>
-      
+
       <div class="row">
-        <% link_to edit_book_path(@user) %>
-          <a class="btn btn-outline-secondary btn-block" >
+        <% if @user == current_user %>
+          <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
             <i class="fas fa-user-cog"></i>
-          </a>
+          <% end %>
+        <% end %>
       </div>
-      
+
       <h1>New book</h1>
-      
+
       <%= form_with model: @book do |f| %>
         <h4>Title</h4>
         <%= f.text_field :title %>
-      
+
         <h4>Opinipn</h4>
         <%= f.text_area :body %>
-      
+
         <%= f.submit 'Create Book' %>
-      
+
       <% end %>
     </div>
-      
-      
-      
-      
+
+
+
+
       <div class="col-md-8 offset-md-1">
       <h1>Users</h1>
-      
+
       <table class="table table-hover table-inverse">
       <thead>
         <tr>
@@ -58,22 +59,17 @@
         <th></th>
         </tr>
       </thead>
-      
-      <% @books.each do |book| %>
+
       <thead>
+      <% @users.each do |user| %>
         <tr>
-        <th><%= image_tag @user.get_profile_image(80,80) %></th>   
-        
-        <th><%= book.title %></th>
-      
-        <th><%= link_to "show", user_path(book.id) %></th>
-      
+        <th><%= image_tag user.get_profile_image(80,80) %></th>
+        <th><%= user.name %></th>
+        <th><%= link_to "show", user_path(user.id) %></th>
         </tr>
-      </thead>
-      
-      
       <% end %>
-      
+      </thead>
+
       </table>
     </div>
   </div>

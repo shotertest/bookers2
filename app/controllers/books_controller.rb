@@ -7,6 +7,7 @@ class BooksController < ApplicationController
     @books = Book.all
 
     @user = current_user
+    
   end
 
   def show
@@ -16,6 +17,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
 
     @book_new = Book.new
+    
 
   end
 
@@ -31,18 +33,28 @@ class BooksController < ApplicationController
 
     @book.user_id = current_user.id
 
-    @book.save
+    if @book.save
+      
+    flash[:notice] = "You have created book successfully."  
 
     redirect_to book_path(@book.id)
+    
+    end
+    
   end
 
  def update
 
     @book = Book.find(params[:id])
 
-    @book.update(book_params)
+    if @book.update(book_params)
+      
+    flash[:notice] = "You have updated book successfully."  
 
     redirect_to book_path(@book.id)
+    
+    end
+
  end
  
  def destroy
@@ -50,7 +62,7 @@ class BooksController < ApplicationController
     
     book.destroy  # データ（レコード）を削除
     
-    redirect_to book_path
+    redirect_to books_path
  end
 
 
