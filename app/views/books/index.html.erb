@@ -1,3 +1,14 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
 <div class="container px-5 px-sm-0">
   <div class="row">
 
@@ -6,8 +17,6 @@
      <h1>User info</h1>
 
       <%= image_tag @user.get_profile_image(100,100) %>
-      <% if @user.id == current_user.id %>
-      <% end %>
 
       <table class="table">
         <tbody>
