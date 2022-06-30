@@ -37,7 +37,7 @@
   <h4>Opinipn</h4>
   <%= f.text_area :body %>
 
-  <%= f.submit 'Create Book' %>
+  <%= f.submit 'Create Book', class: "btn-sm btn-success" %>
 
 <% end %>
 
@@ -64,8 +64,8 @@
     <td><%= @book.body %></td>
 
     <% if @book.user == current_user %>
-    <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
-    <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
+    <td><%= link_to "Edit", edit_book_path(@book.id), class:"btn-sm btn-success" %></td>
+    <td><%= link_to "Destroy", book_path(@book.id), class:"btn-sm btn-danger destroy(@book.id)", method: :delete, "data-confirm" => "本当に消しますか？" %></td>
     <% end %>
     </tr>
  </tbody>
